@@ -9,6 +9,8 @@
     }
 
     $siteName = config('app.name', 'Laravel');
+    $author = $article['author_info'];
+    $authorUrl = isset(SiteContent::data()['authors'][$author['key']]) ? route('author', $author['key']) : route('team');
     $rendered = \App\Support\ArticleMarkdown::render($article['body']);
     $publishedAt = \Carbon\Carbon::parse($article['date']);
 
@@ -41,7 +43,15 @@
                 {{ $article['title'] }}
             </h1>
 
-            <div class="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted">
+            <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted">
+                <a href="{{ $authorUrl }}" wire:navigate class="flex items-center gap-3">
+                    @include('partials.avatar', ['author' => $author, 'class' => 'size-10 text-xs'])
+                    <span>
+                        <span class="block font-medium text-ink hover:text-brand-700">{{ $author['name'] }}</span>
+                        <span class="text-xs">{{ $author['role'] }}</span>
+                    </span>
+                </a>
+                <span class="hidden h-6 w-px bg-line sm:block"></span>
                 <time datetime="{{ $article['date'] }}">{{ $publishedAt->translatedFormat(__('F j, Y')) }}</time>
                 <span class="size-1 rounded-full bg-zinc-300"></span>
                 <span>{{ __(':minutes min read', ['minutes' => $article['reading_minutes']]) }}</span>
@@ -85,7 +95,24 @@
                 <div class="min-w-0 lg:col-span-8 lg:order-1">
                     @include('partials.article-body', ['html' => $rendered['html']])
 
-                    <p class="mt-14 flex gap-3 rounded-2xl border border-line p-5 text-sm leading-relaxed text-muted">
+                    {{-- Author card --}}
+                    <div class="mt-16 flex flex-col gap-5 rounded-3xl bg-soft p-7 sm:flex-row sm:items-start">
+                        @include('partials.avatar', ['author' => $author, 'class' => 'size-16 text-lg'])
+                        <div>
+                            <p class="text-xs font-medium text-muted">{{ __('Written by') }}</p>
+                            <p class="mt-1 text-lg font-semibold text-ink">{{ $author['name'] }}</p>
+                            <p class="text-sm text-brand-700">{{ $author['role'] }}</p>
+                            @if ($author['bio'])
+                                <p class="mt-3 text-sm leading-relaxed text-body">{{ $author['bio'] }}</p>
+                            @endif
+                            <a href="{{ $authorUrl }}" wire:navigate class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-700">
+                                {{ __('Read full bio') }}
+                                <flux:icon name="arrow-right" variant="micro" class="size-4" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <p class="mt-6 flex gap-3 rounded-2xl border border-line p-5 text-sm leading-relaxed text-muted">
                         <flux:icon name="information-circle" variant="mini" class="size-5 shrink-0 text-brand-500" />
                         <span>
                             <span class="font-medium text-body">{{ __('Educational content only.') }}</span>

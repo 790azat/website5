@@ -1,6 +1,6 @@
 {{--
     Shared site header: a single white bar with the logo, a Categories menu,
-    article search, page links and the language switcher. Expects $categories
+    article search and the Terms / Privacy policy links. Expects $categories
     (from layouts.site) and x-data="{ mobileOpen: false }" on <body>.
 --}}
 <header class="sticky top-0 z-40 border-b border-line bg-white/90 backdrop-blur-md">
@@ -40,7 +40,8 @@
 
         <div class="ml-auto flex items-center gap-1 sm:gap-3">
             <nav class="hidden items-center gap-6 text-sm text-muted lg:flex">
-                <a href="{{ route('articles') }}" wire:navigate class="transition hover:text-ink">{{ __('Articles') }}</a>
+                <a href="{{ route('terms-of-use') }}" wire:navigate class="transition hover:text-ink">{{ __('Terms') }}</a>
+                <a href="{{ route('privacy-policy') }}" wire:navigate class="transition hover:text-ink">{{ __('Privacy policy') }}</a>
             </nav>
 
             <button
@@ -87,7 +88,6 @@
 
         <nav class="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-5">
             <a href="{{ route('home') }}" wire:navigate @click="mobileOpen = false" class="rounded-xl px-3 py-2.5 font-medium text-ink hover:bg-soft">{{ __('Home') }}</a>
-            <a href="{{ route('articles') }}" wire:navigate @click="mobileOpen = false" class="rounded-xl px-3 py-2.5 font-medium text-ink hover:bg-soft">{{ __('All Articles') }}</a>
 
             <p class="eyebrow mt-5 mb-1 px-3">{{ __('Categories') }}</p>
             @foreach ($categories as $category)
@@ -99,6 +99,10 @@
                 </a>
             @endforeach
 
+            <div class="mt-5 border-t border-line pt-4">
+                <a href="{{ route('terms-of-use') }}" wire:navigate @click="mobileOpen = false" class="block rounded-xl px-3 py-2.5 text-body hover:bg-soft">{{ __('Terms') }}</a>
+                <a href="{{ route('privacy-policy') }}" wire:navigate @click="mobileOpen = false" class="block rounded-xl px-3 py-2.5 text-body hover:bg-soft">{{ __('Privacy policy') }}</a>
+            </div>
         </nav>
     </div>
 </div>
