@@ -30,12 +30,6 @@
                         </a>
                     </li>
                 @endforeach
-                <li>
-                    <a href="#contact-us" class="flex gap-3 rounded-xl px-3 py-2 text-body transition hover:bg-soft hover:text-brand-700">
-                        <span class="w-5 shrink-0 font-semibold text-brand-500">{{ count($sections) + 1 }}</span>
-                        {{ __('Contact Us') }}
-                    </a>
-                </li>
             </ol>
         </nav>
     </aside>
@@ -61,17 +55,6 @@
                     @endisset
                 </div>
             @endforeach
-
-            <div id="contact-us" class="scroll-mt-28 rounded-3xl bg-brand-50 p-8">
-                <h2 class="text-2xl font-semibold text-ink">{{ __('Contact Us') }}</h2>
-                <p class="mt-3 leading-relaxed text-body">
-                    {!! __('If you have any questions about :doc, please reach out to us at :email or visit our :contact.', [
-                        'doc' => e($docName),
-                        'email' => '<a href="mailto:hello@'.e($domainName).'" class="font-medium text-brand-700 underline decoration-brand-300 underline-offset-4 hover:decoration-brand-600">hello@'.e($domainName).'</a>',
-                        'contact' => '<a href="'.e(route('contact')).'" wire:navigate class="font-medium text-brand-700 underline decoration-brand-300 underline-offset-4 hover:decoration-brand-600">'.e(__('Contact page')).'</a>',
-                    ]) !!}
-                </p>
-            </div>
         </div>
 
         <p class="mt-10 rounded-2xl border border-line bg-soft p-6 text-sm leading-relaxed text-muted">

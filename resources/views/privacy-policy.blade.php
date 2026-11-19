@@ -18,7 +18,7 @@
             'list' => [
                 __('Usage data — we may collect general information about how you interact with our site, such as pages viewed and links clicked, to help us understand what content is useful.'),
                 __('Technical data — like most websites, our servers automatically log standard technical details such as browser type, device type, and IP address for security and troubleshooting purposes.'),
-                __('Communications — if you contact us directly, such as through our Contact page, we keep a record of that correspondence so we can respond to you.'),
+                __('Communications — if you write to us directly, we keep a record of that correspondence so we can respond to you.'),
             ],
         ],
         [

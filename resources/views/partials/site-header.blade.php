@@ -41,15 +41,7 @@
         <div class="ml-auto flex items-center gap-1 sm:gap-3">
             <nav class="hidden items-center gap-6 text-sm text-muted lg:flex">
                 <a href="{{ route('articles') }}" wire:navigate class="transition hover:text-ink">{{ __('Articles') }}</a>
-                <a href="{{ route('team') }}" wire:navigate class="transition hover:text-ink">{{ __('Our Team') }}</a>
-                <a href="{{ route('contact') }}" wire:navigate class="transition hover:text-ink">{{ __('Contact') }}</a>
             </nav>
-
-            <span class="hidden h-5 w-px bg-line lg:block"></span>
-
-            <div class="hidden sm:block">
-                @include('partials.language-switcher')
-            </div>
 
             <button
                 type="button"
@@ -107,13 +99,6 @@
                 </a>
             @endforeach
 
-            <p class="eyebrow mt-5 mb-1 px-3">{{ __('About') }}</p>
-            <a href="{{ route('team') }}" wire:navigate @click="mobileOpen = false" class="rounded-xl px-3 py-2.5 text-body hover:bg-soft">{{ __('Our Team') }}</a>
-            <a href="{{ route('contact') }}" wire:navigate @click="mobileOpen = false" class="rounded-xl px-3 py-2.5 text-body hover:bg-soft">{{ __('Contact') }}</a>
-
-            <div class="mt-6 px-3">
-                @include('partials.language-switcher')
-            </div>
         </nav>
     </div>
 </div>

@@ -15,7 +15,7 @@
             <h3 class="mt-4 text-2xl leading-snug font-semibold tracking-tight text-balance text-ink sm:text-3xl">{{ $article['title'] }}</h3>
             <p class="mt-4 line-clamp-3 leading-relaxed text-muted">{{ $article['excerpt'] }}</p>
             <p class="mt-6 text-sm text-muted">
-                {{ $article['author_info']['name'] }} &middot; {{ __(':minutes min read', ['minutes' => $article['reading_minutes']]) }}
+                {{ __(':minutes min read', ['minutes' => $article['reading_minutes']]) }}
             </p>
             <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-brand-600">
                 {{ __('Read more') }}

@@ -9,7 +9,6 @@
     $categories = SiteContent::categories();
     $allArticles = SiteContent::articles();
     $heroArticle = $allArticles->first();
-    $authors = SiteContent::authors();
 
     // Popular: the newest two from each topic, interleaved so every topic shows up.
     $perTopic = $categories->map(fn ($category) => SiteContent::articles($category['id'])->where('slug', '!=', $heroArticle['slug'] ?? null)->values());
@@ -47,10 +46,7 @@
                             {{ __('Read more') }}
                             <flux:icon name="arrow-right" variant="mini" class="size-4 transition group-hover:translate-x-0.5" />
                         </span>
-                        <span class="flex items-center gap-2.5 text-sm text-muted">
-                            @include('partials.avatar', ['author' => $heroArticle['author_info'], 'class' => 'size-8 text-[11px]'])
-                            {{ $heroArticle['author_info']['name'] }} &middot; {{ __(':minutes min read', ['minutes' => $heroArticle['reading_minutes']]) }}
-                        </span>
+                        <span class="text-sm text-muted">{{ __(':minutes min read', ['minutes' => $heroArticle['reading_minutes']]) }}</span>
                     </div>
                 </div>
                 <div class="relative order-1 flex aspect-[16/10] items-center justify-center overflow-hidden lg:order-2 lg:aspect-auto lg:min-h-[30rem]">
@@ -129,18 +125,14 @@
                 </div>
             @endforeach
 
-            {{-- Team teaser fills the last cell of the grid --}}
-            <a href="{{ route('team') }}" wire:navigate class="group flex flex-col justify-between rounded-3xl bg-brand-600 p-7 text-white">
+            {{-- Library teaser fills the last cell of the grid --}}
+            <a href="{{ route('articles') }}" wire:navigate class="group flex flex-col justify-between rounded-3xl bg-brand-600 p-7 text-white">
                 <div>
-                    <p class="text-sm text-brand-100">{{ __('Meet the team') }}</p>
-                    <p class="mt-2 text-xl leading-snug font-semibold text-balance">{{ __('Written by editors who know their subjects') }}</p>
+                    <p class="text-sm text-brand-100">{{ __('The full library') }}</p>
+                    <p class="mt-2 text-xl leading-snug font-semibold text-balance">{{ __('Browse every guide in one place, newest first') }}</p>
                 </div>
                 <div class="mt-8 flex items-center justify-between">
-                    <span class="flex -space-x-2">
-                        @foreach ($authors->take(5) as $author)
-                            @include('partials.avatar', ['author' => $author, 'class' => 'size-9 text-[11px] !ring-brand-600'])
-                        @endforeach
-                    </span>
+                    <span class="text-sm text-brand-100">{{ trans_choice(':count article|:count articles', $allArticles->count()) }}</span>
                     <flux:icon name="arrow-right" variant="mini" class="size-5 transition group-hover:translate-x-1" />
                 </div>
             </a>

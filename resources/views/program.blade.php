@@ -67,7 +67,7 @@
             <p class="mt-5 text-sm leading-relaxed text-body">
                 {{ __('We aim to make legal processes easier to navigate by sharing practical guidance, useful questions to ask a professional, and information readers can actually use.') }}
             </p>
-            <a href="{{ route('team') }}" wire:navigate class="btn-ghost mt-6">{{ __('Learn more about our editors') }}</a>
+            
         </div>
     </article>
 
