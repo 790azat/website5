@@ -18,7 +18,7 @@
         'eyebrow' => $author['role'],
         'heading' => $author['name'],
         'lead' => $author['bio'],
-        'crumbs' => [__('Our Team') => route('team'), $author['name'] => null],
+        'crumbs' => [$author['name'] => null],
         'meta' => $author['count'] ? trans_choice(':count article|:count articles', $author['count']) : null,
     ])
 
@@ -46,11 +46,6 @@
                     <flux:icon name="information-circle" variant="mini" class="size-5 shrink-0 text-brand-500" />
                     <span>{{ __('Our articles are for general information and are not personalized medical, financial, or professional advice.') }}</span>
                 </p>
-
-                <a href="{{ route('team') }}" wire:navigate class="btn-ghost mt-8">
-                    <flux:icon name="arrow-left" variant="mini" class="size-4" />
-                    {{ __('Meet the whole team') }}
-                </a>
             </div>
         </div>
     </section>

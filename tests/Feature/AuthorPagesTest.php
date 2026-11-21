@@ -15,15 +15,6 @@ test('author page shows the long bio', function (string $key) {
         ->assertSee($author['bio_long']);
 })->with('authors');
 
-test('the team page links to every author page', function () {
-    $response = $this->get(route('team'))->assertOk();
-
-    foreach (SiteContent::authors() as $author) {
-        $response->assertSee(route('author', $author['key']), false)
-            ->assertSee($author['bio']);
-    }
-});
-
 test('unknown author returns 404', function () {
     $this->get(route('author', 'no-such-author'))->assertNotFound();
 });

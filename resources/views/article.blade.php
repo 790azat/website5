@@ -10,7 +10,7 @@
 
     $siteName = config('app.name', 'Laravel');
     $author = $article['author_info'];
-    $authorUrl = isset(SiteContent::data()['authors'][$author['key']]) ? route('author', $author['key']) : route('team');
+    $authorUrl = isset(SiteContent::data()['authors'][$author['key']]) ? route('author', $author['key']) : route('home');
     $rendered = \App\Support\ArticleMarkdown::render($article['body']);
     $publishedAt = \Carbon\Carbon::parse($article['date']);
 

@@ -26,7 +26,6 @@
                     <p class="text-sm font-semibold text-ink">{{ $siteName }}</p>
                     <ul class="mt-4 space-y-2.5 text-sm">
                         <li><a href="{{ route('articles') }}" wire:navigate class="transition hover:text-ink">{{ __('All Articles') }}</a></li>
-                        <li><a href="{{ route('team') }}" wire:navigate class="transition hover:text-ink">{{ __('Our Editorial Team') }}</a></li>
                     </ul>
                 </div>
                 <div>

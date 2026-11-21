@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
  *
  *   /articles?page=2            -> /articles/page/2
  *   /articles?section=x&page=2  -> /articles/page/2/section/x
- *   /our-team?lang=es           -> /es/our-team
+ *   /privacy-policy?lang=es     -> /es/privacy-policy
  *
  * A "lang" parameter becomes a path prefix, and links on a translated page
  * keep that prefix (mirroring the session-remembered language on the live
